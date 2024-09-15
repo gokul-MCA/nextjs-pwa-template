@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { Inter } from 'next/font/google';
 import { Metadata, Viewport } from 'next';
 import Template from './template';
+import { ThemeProvider } from './components/theme-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -42,7 +43,14 @@ export default function RootLayout({
           'debug-screens': process.env.NODE_ENV === 'development',
         })}
       >
-        <Template>{children}</Template>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Template>{children}</Template>
+        </ThemeProvider>
       </body>
     </html>
   );
